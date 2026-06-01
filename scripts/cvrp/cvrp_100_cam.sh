@@ -11,13 +11,13 @@ accelerate launch --mixed_precision=$PRECISION \
     --test_path $DATADIR/CVRP/cvrp100_hgs-20s_15.563.txt \
     --problem cvrp \
     --samples_per_epoch 1024 \
-    --valid_sample 16 \
+    --valid_sample 64 \
     --batch_size 1 \
     --mini_batch_size 8 \
     --num_t 10 \
     --num_k 4 \
     --num_tp 10 \
-    --num_kp 16 \
+    --num_kp 4 \
     --num_h 128 \
     --num_l 6 \
     --method CAM \
@@ -29,4 +29,4 @@ accelerate launch --mixed_precision=$PRECISION \
     --save_dir $MODELDIR/$PROJECT/$EXP \
     --wandb_name $PROJECT \
     --wandb_run_name $EXP \
-    --do_train \
+    --do_train
