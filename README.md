@@ -1,4 +1,4 @@
-# Cbominatorial Adjoint Matching
+# Combinatorial Adjoint Matching
 
 <p align="center">
 <img src="cam.png" alt="Combinatorial Adjoint Matching" width="60%" />
