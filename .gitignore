@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.ipynb
+.ipynb_checkpoints/
+
+# Compiled extensions
+*.so
+*.o
+build/
+*.c
+
+# Checkpoints & logs
+*.pt
+wandb/
+*.err
+*.out
+log*/

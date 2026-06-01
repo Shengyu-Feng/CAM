@@ -1,0 +1,8 @@
+accelerate
+cython
+networkx==2.7.1
+numpy
+scikit_learn
+scipy
+tqdm
+wandb
