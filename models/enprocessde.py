@@ -214,7 +214,11 @@ class EncodeProcessDecodeTime2(nn.Module):
                 timestep_embedding(time*self.time_scale, self.hidden_dim)
             )
 
-            if batch is not None:
+            if time.dim() >= 1 and time.size(0) == X.size(0):
+                # per-node time, (N,) or (N, K): already aligned with X
+                time_emb_node = time_emb
+            elif batch is not None:
+                # per-graph time, (B,)
                 time_emb_node = time_emb[batch]
             else:
                 time_emb_node = time_emb.expand(X.size(0), -1)
