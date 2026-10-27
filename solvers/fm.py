@@ -57,7 +57,8 @@ class FlowMatching(SLSolver):
                 if t == self.num_t-1:
                     solution = torch.sigmoid(logits)
                 else:
-                    solution_prob = solution + (torch.sigmoid(logits)-solution)*(t2-t1)
+                    # Euler step of the velocity (x1_hat - x_t) / (1 - t) for x_t = t*x1 + (1-t)*0.5
+                    solution_prob = solution + (torch.sigmoid(logits)-solution)*(t2-t1)/(1-t1)
                     solution = torch.bernoulli(solution_prob.clamp(0,1))
     
             best_energy, _ = self.problem.evaluate(graph, solution)
