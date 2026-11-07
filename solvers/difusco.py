@@ -94,7 +94,8 @@ class DIFUSCO(SLSolver):
     
     def train_batch(self, graph):
         batch_size = len(graph.idx)
-        time = np.random.randint(0, self.num_tp+1, batch_size)
+        # t in 1..T as in DIFUSCO (t=0 would be the clean label itself)
+        time = np.random.randint(1, self.num_tp+1, batch_size)
         
         if self.solution_type == 'edge':
             time = time[graph.batch[graph.edge_index[0]].cpu().numpy()]

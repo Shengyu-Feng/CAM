@@ -88,6 +88,11 @@ class Dataset(Dataset):
         if solution is None:
             data.x = torch.ones(data.num_nodes,1, dtype=self.dtype)
         else:
+            # the .result labels are indexed by sorted(G.nodes()), while from_networkx above
+            # indexes nodes by G's insertion order: realign the label to that order
+            nodes = list(G.nodes())
+            sorted_idx = {v: j for j, v in enumerate(sorted(nodes))}
+            solution = [solution[sorted_idx[v]] for v in nodes]
             data.x = torch.tensor(solution).reshape(data.num_nodes,1).to(self.dtype)
 
         data.b = -torch.ones_like(data.x)
